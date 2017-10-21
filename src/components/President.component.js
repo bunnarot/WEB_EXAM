@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getName, setName } from '../actions/User.actions';
+import { getName } from '../actions/User.actions';
 class President extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             name: '',
-            submit:''
+
         }
     }
 
@@ -16,27 +16,15 @@ class President extends React.Component {
         this.setState({name: data});
     }
 
-    onSubmit(e) {
-        this.setState({submit: this.state.name});
-        this.props.setName(this.state.name);
-        e.preventDefault();
-    }
+
 
     render() {
         return (
             <div>
-                <h1>show Detali</h1><br/>
-                <p> {this.props.user.name} </p><br/>
-                <div>Recieved data: {this.props.user.name}</div>
-                <button onClick={() => {this.props.getName()}}>Get data</button>
-                <form onSubmit={this.onSubmit.bind(this) } >
-                    <input  onChange={this.onChange.bind(this)} />
-                    <button onClick={this.onSubmit.bind(this)}>data to server</button>
-                    <button onClick={this.onSubmit.bind(this)}>Del Store</button>
-                </form>
-                <div>Data: {this.state.name} </div>
-                <div>Stroe: {this.state.submit} </div>
-                { this.props.user.err !== ""? <strong>{ this.props.user.err }</strong>: null }
+
+                <p> ID: {this.props.x.id}     Nm: {this.props.x.nm}</p>
+                <p> Pp: {this.props.x.pp}     Tm: {this.props.x.tm}  </p>
+<br/>
             </div>
         );
     }
@@ -52,9 +40,7 @@ const mapDispatchToProps = (dispatch) => {
         getName: () => {
             dispatch(getName());
         },
-        setName: (name) => {
-            dispatch(setName(name));
-        }
+
     }
 }
 
