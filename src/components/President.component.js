@@ -1,32 +1,32 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addCounter, delCounter } from "../actions/App.actions";
 import { withRouter } from 'react-router-dom';
-
-class show extends React.Component {
+import { getName, setName } from '../actions/User.actions';
+class President extends React.Component {
     render() {
         return (
             <div>
-                <p> your count: {this.props.count} </p>
-
+                <h1>show Detali</h1><br/>
+                <p> {this.props.user.name} </p><br/>
             </div>
         );
     }
 }
 const mapStateToProps = (state) => {
     return {
-        count: state.app
-    };
-};
+        user: state.user
+    }
+}
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        add: (val) => {
-            dispatch(addCounter(val));
+        getName: () => {
+            dispatch(getName());
         },
-        del: (val) => {
-            dispatch(delCounter(val));
+        setName: (name) => {
+            dispatch(setName(name));
         }
     }
-};
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(show));
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(President));
